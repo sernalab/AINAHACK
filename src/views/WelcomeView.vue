@@ -8,7 +8,7 @@
         ripple
         @click="navigateTo('Chat')"
       >
-        <v-card-item>
+        <v-card-item class="cards">
           <div>
             <div class="text-overline mb-1">Interactúa amb la nostre IA</div>
             <div class="text-caption">
@@ -24,7 +24,7 @@
         ripple
         @click="navigateTo('Calendar')"
       >
-        <v-card-item>
+        <v-card-item class="cards">
           <div>
             <div class="text-overline mb-1">
               Troba cita en el nostre calendari
@@ -50,11 +50,14 @@ export default {
 </script>
 
 <style scoped>
+.cards {
+  width: 600px;
+}
 img {
-  height: 220px;
+  height: 280px;
 }
 .wrapper-options {
-  margin-top: 230px;
+  margin-top: 220px;
   display: flex;
   justify-content: space-between;
   align-content: center;
@@ -62,6 +65,7 @@ img {
 }
 
 .clickable-card {
+  margin: 0 !important;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }

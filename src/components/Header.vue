@@ -1,8 +1,8 @@
 <template>
   <v-app-bar app color="teal-lighten-4">
-    <v-toolbar-title>AINAHACK</v-toolbar-title>
+    <img class="aina-img" src="../assets/ainahack.png" alt="" />
     <v-spacer></v-spacer>
-    <img src="../assets/sirt.png" alt="" />
+    <img class="sirt-img" src="../assets/sirt.png" alt="" />
   </v-app-bar>
 </template>
 
@@ -13,7 +13,13 @@ export default {
 </script>
 
 <style scoped>
-img {
+.sirt-img {
+  margin-right: 15px;
   height: 80px;
+}
+
+.aina-img {
+  margin-left: 15px;
+  height: 40px;
 }
 </style>

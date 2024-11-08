@@ -25,6 +25,10 @@ function goToWelcome() {
 </script>
 
 <style scoped>
+.v-sheet {
+  width: 700px;
+  height: 500px;
+}
 .back-button {
   margin-top: 20px;
   margin-left: 20px;

@@ -109,7 +109,7 @@ export default {
       if (!this.userMessage) return;
       this.messages.push({ text: this.userMessage, fromUser: true });
       setTimeout(() => {
-        this.messages.push({ text: "Respuesta de la IA...", fromUser: false });
+        this.messages.push({ text: "Resposta de la IA...", fromUser: false });
       }, 1000);
       this.userMessage = "";
     },
