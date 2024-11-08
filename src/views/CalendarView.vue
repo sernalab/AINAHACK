@@ -8,7 +8,35 @@
     Tornar
   </v-btn>
   <v-container>
-    <VDatePicker v-model="date" mode="date" class="custom-date-picker" />
+    <VDatePicker
+      v-model="date"
+      mode="date"
+      class="custom-date-picker"
+      @input="onDateSelected"
+      :label="
+        date && time
+          ? `Seleccionado: ${date.toLocaleDateString()} ${time}`
+          : 'Selecciona una fecha'
+      "
+    />
+
+    <v-select
+      v-if="date"
+      v-model="time"
+      :items="timeOptions"
+      label="Selecciona la hora"
+      placeholder="HH:mm"
+      class="mt-4 custom-time-select"
+      @change="onTimeSelected"
+    />
+
+    <v-btn
+      @click="toggleComplete"
+      :class="{ 'completed-button': isComplete }"
+      class="mt-4"
+    >
+      {{ isComplete ? "Cita guardada" : "Guardar Data i Hora" }}
+    </v-btn>
   </v-container>
 </template>
 
@@ -16,11 +44,35 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
-const date = ref(new Date());
+const date = ref(null);
+const time = ref(null);
+const isComplete = ref(false);
 const router = useRouter();
 
 function goToWelcome() {
   router.push({ name: "Welcome" });
+}
+
+function onDateSelected(selectedDate) {
+  date.value = selectedDate;
+  time.value = null;
+  isComplete.value = false;
+}
+
+const timeOptions = Array.from({ length: 24 * 2 }, (_, i) => {
+  const hours = String(Math.floor(i / 2)).padStart(2, "0");
+  const minutes = i % 2 === 0 ? "00" : "30";
+  return `${hours}:${minutes}`;
+});
+
+function onTimeSelected() {
+  isComplete.value = false;
+}
+
+function toggleComplete() {
+  if (date.value && time.value) {
+    isComplete.value = !isComplete.value;
+  }
 }
 </script>
 
@@ -36,16 +88,26 @@ function goToWelcome() {
 
 .v-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
 }
 
 .custom-date-picker {
-  --v-theme-primary: #4caf50;
+  --v-theme-primary: #6c63ff;
   --v-theme-surface: #f9f9f9;
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-time-select {
+  width: 150px;
+}
+
+.completed-button {
+  background-color: #6c63ff;
+  color: white;
 }
 
 .custom-date-picker .v-date-picker-title {
@@ -56,13 +118,5 @@ function goToWelcome() {
 .custom-date-picker .v-btn.v-btn--selected {
   background-color: #ff5722 !important;
   color: white !important;
-}
-
-.custom-date-picker .v-date-picker-table .v-btn {
-  color: #4caf50;
-}
-
-.custom-date-picker .v-date-picker-table .v-btn--disabled {
-  color: #b0bec5;
 }
 </style>

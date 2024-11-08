@@ -15,9 +15,9 @@
         >
         <v-card-text>
           <p class="intro-text">
-            Aquest assistent d'IA està dissenyat per resoldre dubtes comuns i
-            oferir consells pràctics sobre la criança. Descobreix com pot
-            ajudar-te!
+            Aquest assistent d'IA (<span class="name-ai">CivitasIA</span>) està
+            dissenyat per resoldre dubtes comuns i oferir consells pràctics
+            sobre la criança. Descobreix com pot ajudar-te!
           </p>
           <ul class="feature-list">
             <li>
@@ -137,6 +137,12 @@ export default {
 /* .v-list {
   background-color: #2b5876;
 } */
+
+.name-ai {
+  font-size: 1rem;
+  color: #6c63ff;
+  font-weight: bold;
+}
 
 .back-button {
   margin-top: 20px;
