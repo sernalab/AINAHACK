@@ -10,8 +10,32 @@
   <template v-if="messages.length === 0">
     <div class="wrapper-chatview">
       <v-card class="welcome-block">
-        <v-card-title>Benvingut a </v-card-title>
-        <v-card-text> texto </v-card-text>
+        <v-card-title
+          >Benvingut a l'assistent d'ajuda per a pares i mares</v-card-title
+        >
+        <v-card-text>
+          <p class="intro-text">
+            Aquest assistent d'IA està dissenyat per resoldre dubtes comuns i
+            oferir consells pràctics sobre la criança. Descobreix com pot
+            ajudar-te!
+          </p>
+          <ul class="feature-list">
+            <li>
+              <span class="feature-title">Dies de paternitat i permisos: </span>
+              <span class="feature-description"
+                >Informa't sobre els permisos disponibles per a pares i
+                mares.</span
+              >
+            </li>
+            <li>
+              <span class="feature-title">Consells per a la lactància: </span>
+              <span class="feature-description"
+                >Recomanacions i bones pràctiques per a una lactància
+                saludable.</span
+              >
+            </li>
+          </ul>
+        </v-card-text>
       </v-card>
     </div>
   </template>
@@ -29,7 +53,7 @@
           <template v-if="message.fromUser">
             <div class="icon-message-user">
               <v-avatar class="message-avatar">
-                <v-icon>mdi-account</v-icon>
+                <v-icon color="#6C63FF">mdi-account</v-icon>
               </v-avatar>
               <v-card flat class="message-content">
                 <v-card-text>{{ message.text }}</v-card-text>
@@ -39,7 +63,7 @@
           <template v-else>
             <div class="icon-message">
               <v-avatar class="message-avatar">
-                <v-icon>mdi-robot-excited</v-icon>
+                <v-icon color="#6C63FF">mdi-robot-excited</v-icon>
               </v-avatar>
               <v-card flat class="message-content">
                 <v-card-text>{{ message.text }}</v-card-text>
@@ -71,7 +95,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { fetchSalamandraResponse } from "../api.js";
 
 export default {
   data() {
@@ -93,15 +117,14 @@ export default {
       this.$router.push({ name: "Welcome" });
     },
   },
-  async FETCHING() {
+  async getResponse() {
     try {
-      const response = await axios.post("https://api.tu-ia.com/mensaje", {
-        message: this.userMessage,
-      });
+      this.response = "Cargando...";
+      const result = await fetchSalamandraResponse(this.userInput);
+      this.response = result;
     } catch (error) {
-      console.error("Error al obtener la respuesta de la API:", error);
+      this.response = "Error al obtener la respuesta";
     }
-    this.userMessage = "";
   },
 };
 </script>
@@ -123,11 +146,12 @@ export default {
 .wrapper-chatview {
   display: flex;
   justify-content: center;
-  margin-top: 230px;
+  margin-top: 120px;
 }
 
 .welcome-block {
   width: 50%;
+  padding: 20px;
 }
 
 .message-list {
@@ -172,7 +196,7 @@ export default {
 }
 
 .from-user .message-content {
-  background-color: #90a4ae;
+  background-color: #b0bec5;
   color: black;
   text-align: right;
 }
@@ -181,5 +205,20 @@ export default {
   background-color: #cfd8dc;
   color: black;
   text-align: left;
+}
+
+.feature-list li {
+  margin: 16px 0;
+}
+
+.feature-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.feature-description {
+  font-size: 0.9rem;
+  color: #666;
 }
 </style>

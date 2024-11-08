@@ -10,7 +10,6 @@ import "vuetify/styles";
 
 // Composables
 import { createVuetify } from "vuetify";
-import { VCalendar } from "vuetify/labs/VCalendar";
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
@@ -25,8 +24,5 @@ export default createVuetify({
       success: "#4CAF50",
       warning: "#FB8C00",
     },
-  },
-  components: {
-    VCalendar,
   },
 });
