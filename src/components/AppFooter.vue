@@ -1,5 +1,5 @@
 <template>
-  <v-footer app color="teal-lighten-4" padless>
+  <v-footer class="footer-aina" app color="teal-lighten-4" padless>
     <div
       class="text-caption text-disabled"
       style="position: absolute; right: 16px"
@@ -20,5 +20,8 @@
 <script setup>
 </script>
 
-<style scoped lang="sass">
+<style scoped>
+.footer-aina {
+  height: 50px;
+}
 </style>

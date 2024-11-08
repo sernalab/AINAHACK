@@ -5,16 +5,20 @@
  */
 
 // Plugins
-import { registerPlugins } from '@/plugins'
+import { registerPlugins } from "@/plugins";
+import VCalendar from "v-calendar";
+import "v-calendar/style.css";
 
 // Components
-import App from './App.vue'
+import App from "./App.vue";
+import router from "./router";
 
 // Composables
-import { createApp } from 'vue'
+import { createApp } from "vue";
 
-const app = createApp(App)
+const app = createApp(App);
 
-registerPlugins(app)
-
-app.mount('#app')
+registerPlugins(app);
+app.use(VCalendar, {});
+app.use(router);
+app.mount("#app");
