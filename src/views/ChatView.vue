@@ -95,6 +95,8 @@
 </template>
 
 <script>
+import { getSalamandraResponse } from "../api";
+
 export default {
   data() {
     return {
@@ -117,25 +119,10 @@ export default {
       this.isLoading = true;
 
       try {
-        //enchufarle URL completa cuando este subido
-        const response = await fetch("/api/chat", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            message: messageToSend,
-          }),
-        });
-
-        if (!response.ok) {
-          throw new Error("Error en la respuesta del servidor");
-        }
-
-        const data = await response.json();
+        const response = await getSalamandraResponse(messageToSend);
 
         this.messages.push({
-          text: data.response,
+          text: response,
           fromUser: false,
         });
       } catch (error) {

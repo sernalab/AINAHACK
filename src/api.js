@@ -1,19 +1,20 @@
 import axios from "axios";
 
-export const getAIResponse = async (message) => {
+const api = axios.create({
+  baseURL: "https://localhost:8000",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+export const getSalamandraResponse = async (prompt) => {
   try {
-    const response = await axios.post(
-      "https://your-endpoint-url.com/endpoint",
-      { message },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    return response.data.response || "Error api.js";
+    const response = await api.post("/chat", {
+      message: prompt,
+    });
+    return response.data.message;
   } catch (error) {
-    console.error("Error al obtener respuesta de la IA:", error);
-    return "Error AI api.js";
+    console.lerr("Errorsito");
+    throw error;
   }
 };
