@@ -19,7 +19,9 @@
       :title="
         date ? `Data seleccionada: ${formatDate(date)}` : 'Escull una data'
       "
-      :header=""
+      :header="
+        date ? `Data seleccionada: ${formatDate(date)}` : 'Escull una data'
+      "
       :label="
         date && time
           ? `Seleccionado: ${date.toLocaleDateString()} ${time}`

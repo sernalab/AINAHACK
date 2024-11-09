@@ -52,9 +52,9 @@
         >
           <template v-if="message.fromUser">
             <div class="icon-message-user">
-              <v-avatar class="message-avatar">
+              <div class="message-avatar">
                 <v-icon color="#6C63FF">mdi-account</v-icon>
-              </v-avatar>
+              </div>
               <v-card flat class="message-content">
                 <v-card-text>{{ message.text }}</v-card-text>
               </v-card>
@@ -62,9 +62,10 @@
           </template>
           <template v-else>
             <div class="icon-message">
-              <v-avatar class="message-avatar">
-                <v-icon color="#6C63FF">mdi-robot-excited</v-icon>
-              </v-avatar>
+              <div class="message-avatar">
+                <!-- <v-icon color="#6C63FF">mdi-robot-excited</v-icon> -->
+                <img class="civitas" src="../assets/xatCivitasAI.png" alt="" />
+              </div>
               <v-card flat class="message-content">
                 <v-card-text>{{ message.text }}</v-card-text>
               </v-card>
@@ -78,13 +79,15 @@
     <v-container>
       <v-row align="center" justify="space-between">
         <v-text-field
+          class="input-chat"
           color="black"
           v-model="userMessage"
-          label="Interactúa amb CivitasAI"
+          label="Interactúa amb CivitasIA"
           @keyup.enter="sendMessage"
           outlined
           dense
           full-width
+          hide-details
         />
         <v-btn icon @click="sendMessage">
           <v-icon>mdi-send</v-icon>
@@ -152,6 +155,21 @@ export default {
   background-color: #2b5876;
 } */
 
+.input-chat {
+  background-color: #ecebff;
+}
+
+.v-row {
+  gap: 30px;
+}
+
+.v-icon::before {
+  font-size: 33px;
+}
+
+.civitas {
+  height: 40px;
+}
 .name-ai {
   font-size: 1rem;
   color: #6c63ff;
