@@ -53,7 +53,9 @@
           <template v-if="message.fromUser">
             <div class="icon-message-user">
               <div class="message-avatar">
-                <v-icon color="#6C63FF">mdi-account</v-icon>
+                <span icon @click="goToCalendarAppointment">
+                  <v-icon color="#6C63FF">mdi-account</v-icon>
+                </span>
               </div>
               <v-card flat class="message-content">
                 <v-card-text>{{ message.text }}</v-card-text>
@@ -141,6 +143,9 @@ export default {
 
     goToWelcome() {
       this.$router.push({ name: "Welcome" });
+    },
+    goToCalendarAppointment() {
+      this.$router.push({ name: "appointment" });
     },
   },
 };
