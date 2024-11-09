@@ -15,13 +15,15 @@
         >
         <v-card-text>
           <p class="intro-text">
-            Aquest assistent d'IA (<span class="name-ai">CivitasIA</span>) està
-            dissenyat per resoldre dubtes comuns i oferir consells pràctics
+            El nostre assistent d'IA <span class="name-ai">CivitasIA</span>
+            està dissenyat per resoldre dubtes comuns i oferir consells pràctics
             sobre la criança. Descobreix com pot ajudar-te!
           </p>
           <ul class="feature-list">
             <li>
-              <span class="feature-title">Dies de paternitat i permisos: </span>
+              <span class="feature-title"
+                >Dies de paternitat/maternitat i permisos:
+              </span>
               <span class="feature-description"
                 >Informa't sobre els permisos disponibles per a pares i
                 mares.</span
@@ -33,6 +35,12 @@
                 >Recomanacions i bones pràctiques per a una lactància
                 saludable.</span
               >
+            </li>
+            <li>
+              <span class="feature-title"
+                >Qualsevol altre consulta relacionada amb el tràmit.
+              </span>
+              <span class="feature-description"></span>
             </li>
           </ul>
         </v-card-text>
@@ -160,6 +168,16 @@ export default {
   background-color: #2b5876;
 } */
 
+.v-card-title {
+  padding: 0;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.v-card-text {
+  padding: 0;
+}
+
 .input-chat {
   background-color: #ecebff;
 }
@@ -251,7 +269,8 @@ export default {
 }
 
 .feature-list li {
-  margin: 16px 0;
+  margin-left: 20px;
+  margin-top: 16px;
 }
 
 .feature-title {
