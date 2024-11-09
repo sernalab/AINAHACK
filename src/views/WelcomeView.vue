@@ -63,8 +63,17 @@ export default {
 </script>
 
 <style scoped>
-.fill-height {
+/* .fill-height {
   height: 100vh;
+} */
+
+img {
+  width: 390px;
+  height: 236px;
+}
+
+.v-row {
+  flex-wrap: nowrap;
 }
 
 .card-container {
@@ -82,21 +91,6 @@ export default {
   transform: scale(1.05);
 }
 
-.image-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.responsive-image {
-  width: 100%;
-  height: auto;
-  max-height: 280px;
-  object-fit: contain;
-}
-
-/* Ajustes responsivos */
 @media (max-width: 960px) {
   .clickable-card {
     max-width: 90%;
