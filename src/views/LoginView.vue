@@ -8,9 +8,9 @@
     >
       <v-card-text>
         <v-form>
-          <v-text-field label="Nombre de usuario" outlined></v-text-field>
+          <v-text-field label="Nom del usuari" outlined></v-text-field>
           <v-text-field
-            label="Contraseña"
+            label="Contrasenya"
             type="password"
             outlined
           ></v-text-field>
@@ -18,8 +18,8 @@
       </v-card-text>
       <v-card-actions class="justify-center">
         <button class="btn-grad" @click="login" :loading="loading">
-          <span v-if="!loading">Iniciar Sesión</span>
-          <span v-else>Redirigiendo...</span>
+          <span v-if="!loading">Iniciar Sessió</span>
+          <span v-else>Redirigint...</span>
         </button>
       </v-card-actions>
     </v-card>

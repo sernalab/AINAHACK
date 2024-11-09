@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://localhost:8000",
+  baseURL: "",
   headers: {
     "Content-Type": "application/json",
   },
@@ -12,6 +12,7 @@ export const getSalamandraResponse = async (prompt) => {
     const response = await api.post("/chat", {
       message: prompt,
     });
+    console.log("Response received", response.data);
     return response.data.message;
   } catch (error) {
     console.lerr("Errorsito");

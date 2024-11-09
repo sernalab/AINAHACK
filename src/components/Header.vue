@@ -3,8 +3,8 @@
     <img class="aina-img" src="../assets/ainahack.png" alt="" />
     <v-spacer></v-spacer>
     <div class="block-text-img">
-      <span class="aina">AINA </span>
-      <img class="sirt-img" src="../assets/sirt.png" alt="" />
+      <!-- <span class="aina">AINA </span> -->
+      <img class="sirt-img" src="../assets/LOGO-AinaSIRT.png" alt="" />
     </div>
   </v-app-bar>
 </template>
@@ -23,6 +23,7 @@ export default {
 .sirt-img {
   margin-right: 15px;
   max-height: 64px;
+  width: 148px;
 }
 
 .aina {

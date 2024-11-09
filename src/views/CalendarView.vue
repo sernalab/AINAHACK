@@ -13,6 +13,9 @@
       mode="date"
       class="custom-date-picker"
       @input="onDateSelected"
+      :model-modifiers="{ disabled: true }"
+      :picker-date="pickerDate"
+      :allowed-dates="allowedDates"
       :label="
         date && time
           ? `Seleccionado: ${date.toLocaleDateString()} ${time}`
@@ -48,6 +51,17 @@ const date = ref(null);
 const time = ref(null);
 const isComplete = ref(false);
 const router = useRouter();
+const pickerDate = ref(new Date());
+
+const disabledDays = Array.from({ length: 31 }, (_, i) => i + 1)
+  .sort(() => Math.random() - 0.5)
+  .slice(0, 5);
+
+function allowedDates(dateString) {
+  const date = new Date(dateString);
+  const dayOfMonth = date.getDate();
+  return !disabledDays.includes(dayOfMonth);
+}
 
 function goToWelcome() {
   router.push({ name: "Welcome" });
@@ -59,8 +73,8 @@ function onDateSelected(selectedDate) {
   isComplete.value = false;
 }
 
-const timeOptions = Array.from({ length: 24 * 2 }, (_, i) => {
-  const hours = String(Math.floor(i / 2)).padStart(2, "0");
+const timeOptions = Array.from({ length: (20 - 8 + 1) * 2 }, (_, i) => {
+  const hours = String(Math.floor(i / 2) + 8).padStart(2, "0");
   const minutes = i % 2 === 0 ? "00" : "30";
   return `${hours}:${minutes}`;
 });
@@ -99,6 +113,16 @@ function toggleComplete() {
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-date-picker :deep(.v-date-picker-month__day--disabled) {
+  background-color: #f5f5f5 !important;
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.custom-date-picker :deep(.v-date-picker-month__day--disabled:hover) {
+  background-color: #eeeeee !important;
 }
 
 .custom-time-select {
