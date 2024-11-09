@@ -10,7 +10,7 @@
   <v-container>
     <v-alert
       text="Esteu consultant les cites a l'agenda de la oficina de CAISS Barcelona, Sarrià. Carrer Vallvidrera, 27"
-      title="Oficina més propera, CAISS"
+      title="Oficina CAISS"
       type="info"
       variant="tonal"
     ></v-alert>
@@ -68,35 +68,6 @@
         </v-expansion-panel-text>
       </v-expansion-panel>
     </v-expansion-panels>
-  </v-container>
-  <v-container class="datepicker-container">
-    <VDatePicker
-      v-model="date"
-      mode="date"
-      class="custom-date-picker"
-      :title="'Escull una data'"
-      :header="'Escull una data'"
-      @input="onDateSelected"
-    />
-
-    <v-select
-      v-if="date"
-      v-model="time"
-      :items="timeOptions"
-      label="Selecciona la hora"
-      placeholder="HH:mm"
-      class="mt-4 custom-time-select"
-      @change="onTimeSelected"
-    />
-
-    <v-btn
-      v-if="date"
-      @click="toggleComplete"
-      :class="{ 'completed-button': isComplete }"
-      class="mt-4"
-    >
-      {{ isComplete ? "Cita guardada" : "Guardar Data i Hora" }}
-    </v-btn>
   </v-container>
 </template>
 

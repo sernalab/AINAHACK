@@ -170,6 +170,10 @@ function onTimeSelected() {
 function toggleComplete() {
   if (date.value && time.value) {
     isComplete.value = !isComplete.value;
+    if (isComplete.value) {
+      // Redirige a la página de "appointment" cuando la cita esté guardada
+      router.push({ name: "tramit" });
+    }
   }
 }
 </script>
