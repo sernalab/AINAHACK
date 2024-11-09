@@ -57,8 +57,7 @@ img {
 .wrapper-options {
   margin-top: 220px;
   display: flex;
-  justify-content: space-between;
-  align-content: center;
+  align-items: center;
   gap: 30px;
 }
 

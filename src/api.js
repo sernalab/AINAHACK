@@ -14,7 +14,7 @@ export const getSalamandraResponse = async (prompt) => {
       message: prompt,
     });
     console.log("Response received", response.data);
-    return response.data.message;
+    return response.data.response;
   } catch (error) {
     console.lerr("Error comunicación");
     if (error.response) {

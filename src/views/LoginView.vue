@@ -2,7 +2,7 @@
   <v-container class="d-flex align-center justify-center">
     <v-card
       :loading="loading"
-      title="Iniciar sessió"
+      title="Inici de sessió"
       class="login-block"
       outlined
     >
@@ -18,7 +18,7 @@
       </v-card-text>
       <v-card-actions class="justify-center">
         <button class="btn-grad" @click="login" :loading="loading">
-          <span v-if="!loading">Iniciar Sessió</span>
+          <span v-if="!loading">Accedir</span>
           <span v-else>Redirigint...</span>
         </button>
       </v-card-actions>
