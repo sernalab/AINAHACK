@@ -4,6 +4,7 @@
       :loading="loading"
       title="Inici de sessió"
       class="login-block"
+      hide-details
       outlined
     >
       <v-card-text>
@@ -13,6 +14,7 @@
             label="Contrasenya"
             type="password"
             outlined
+            hide-details
           ></v-text-field>
         </v-form>
       </v-card-text>
@@ -48,6 +50,10 @@ export default {
 <style scoped>
 .v-container {
   height: 100%;
+}
+
+.v-card-tex {
+  margin-bottom: 0;
 }
 
 .login-block {

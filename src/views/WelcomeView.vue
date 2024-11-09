@@ -54,11 +54,23 @@ export default {
 img {
   height: 280px;
 }
+
 .wrapper-options {
-  margin-top: 220px;
   display: flex;
   align-items: center;
   gap: 30px;
+}
+
+@media screen and (min-width: 1024px) {
+  .wrapper-options {
+    margin-top: 150px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .wrapper-options {
+    margin-top: 220px;
+  }
 }
 
 .clickable-card {
