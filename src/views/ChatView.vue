@@ -80,7 +80,7 @@
         <v-text-field
           color="black"
           v-model="userMessage"
-          label="Escribe una consulta"
+          label="Interactúa amb CivitasAI"
           @keyup.enter="sendMessage"
           outlined
           dense
@@ -95,36 +95,63 @@
 </template>
 
 <script>
-import { fetchSalamandraResponse } from "../api.js";
-
 export default {
   data() {
     return {
       messages: [],
       userMessage: "",
+      isLoading: false,
     };
   },
   methods: {
-    sendMessage() {
-      if (!this.userMessage) return;
-      this.messages.push({ text: this.userMessage, fromUser: true });
-      setTimeout(() => {
-        this.messages.push({ text: "Resposta de la IA...", fromUser: false });
-      }, 1000);
+    async sendMessage() {
+      if (!this.userMessage.trim()) return;
+
+      this.messages.push({
+        text: this.userMessage,
+        fromUser: true,
+      });
+
+      const messageToSend = this.userMessage;
       this.userMessage = "";
+      this.isLoading = true;
+
+      try {
+        //enchufarle URL completa cuando este subido
+        const response = await fetch("/api/chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: messageToSend,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Error en la respuesta del servidor");
+        }
+
+        const data = await response.json();
+
+        this.messages.push({
+          text: data.response,
+          fromUser: false,
+        });
+      } catch (error) {
+        console.error("Error:", error);
+        this.messages.push({
+          text: "Ho sento, hi ha hagut un error en processar la teva consulta. Si us plau, torna-ho a intentar.",
+          fromUser: false,
+        });
+      } finally {
+        this.isLoading = false;
+      }
     },
+
     goToWelcome() {
       this.$router.push({ name: "Welcome" });
     },
-  },
-  async getResponse() {
-    try {
-      this.response = "Cargando...";
-      const result = await fetchSalamandraResponse(this.userInput);
-      this.response = result;
-    } catch (error) {
-      this.response = "Error al obtener la respuesta";
-    }
   },
 };
 </script>

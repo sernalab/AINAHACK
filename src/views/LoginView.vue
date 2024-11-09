@@ -1,6 +1,11 @@
 <template>
   <v-container class="d-flex align-center justify-center">
-    <v-card :loading="loading" title="Iniciar sessió" class="login-block">
+    <v-card
+      :loading="loading"
+      title="Iniciar sessió"
+      class="login-block"
+      outlined
+    >
       <v-card-text>
         <v-form>
           <v-text-field label="Nombre de usuario" outlined></v-text-field>

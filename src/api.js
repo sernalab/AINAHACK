@@ -1,25 +1,19 @@
 import axios from "axios";
 
-const apiClient = axios.create({
-  baseURL: "http://localhost:8080",
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
-
-export default apiClient;
-
-export const fetchSalamandraResponse = async (prompt) => {
+export const getAIResponse = async (message) => {
   try {
-    const response = await apiClient.post("/v1/completions", {
-      model: "salamandra",
-      prompt: prompt,
-      max_tokens: 50,
-      temperature: 0.7,
-    });
-    return response.data.choices[0].text;
+    const response = await axios.post(
+      "https://your-endpoint-url.com/endpoint",
+      { message },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data.response || "Error api.js";
   } catch (error) {
-    console.error("Error al obtener la respuesta de Salamandra:", error);
-    throw error;
+    console.error("Error al obtener respuesta de la IA:", error);
+    return "Error AI api.js";
   }
 };

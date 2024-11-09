@@ -10,7 +10,7 @@
       >
         <v-card-item class="cards">
           <div>
-            <div class="text-overline mb-1">Interactúa amb la nostre IA</div>
+            <div class="text-overline mb-1">Interactúa amb la nostra IA</div>
             <div class="text-caption">
               <img src="../assets/chatting.svg" alt="" />
             </div>
@@ -26,9 +26,7 @@
       >
         <v-card-item class="cards">
           <div>
-            <div class="text-overline mb-1">
-              Troba cita en el nostre calendari
-            </div>
+            <div class="text-overline mb-1">Troba cita al nostre calendari</div>
             <div class="text-caption">
               <img src="../assets/calendar.svg" alt="" />
             </div>

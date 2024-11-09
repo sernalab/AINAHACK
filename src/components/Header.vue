@@ -2,7 +2,10 @@
   <v-app-bar app color="teal-lighten-4">
     <img class="aina-img" src="../assets/ainahack.png" alt="" />
     <v-spacer></v-spacer>
-    <img class="sirt-img" src="../assets/sirt.png" alt="" />
+    <div class="block-text-img">
+      <span class="aina">AINA </span>
+      <img class="sirt-img" src="../assets/sirt.png" alt="" />
+    </div>
   </v-app-bar>
 </template>
 
@@ -13,9 +16,18 @@ export default {
 </script>
 
 <style scoped>
+.block-text-img {
+  display: flex;
+  align-items: center;
+}
 .sirt-img {
   margin-right: 15px;
-  height: 80px;
+  max-height: 64px;
+}
+
+.aina {
+  margin-top: 1px;
+  font-size: 1.3rem;
 }
 
 .aina-img {
