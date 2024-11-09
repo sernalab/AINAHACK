@@ -34,6 +34,7 @@
     />
 
     <v-btn
+      v-if="date"
       @click="toggleComplete"
       :class="{ 'completed-button': isComplete }"
       class="mt-4"
