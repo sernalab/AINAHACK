@@ -16,12 +16,22 @@
       :model-modifiers="{ disabled: true }"
       :picker-date="pickerDate"
       :allowed-dates="allowedDates"
+      :title="
+        date ? `Data seleccionada: ${formatDate(date)}` : 'Escull una data'
+      "
+      :header=""
       :label="
         date && time
           ? `Seleccionado: ${date.toLocaleDateString()} ${time}`
           : 'Selecciona una fecha'
       "
-    />
+    >
+      <template v-slot:title>
+        {{
+          date ? `Data seleccionada: ${formatDate(date)}` : "Escull una data"
+        }}
+      </template>
+    </VDatePicker>
 
     <v-select
       v-if="date"
@@ -57,6 +67,15 @@ const pickerDate = ref(new Date());
 const disabledDays = Array.from({ length: 31 }, (_, i) => i + 1)
   .sort(() => Math.random() - 0.5)
   .slice(0, 5);
+
+function formatDate(date) {
+  if (!date) return "";
+  return new Date(date).toLocaleDateString("ca", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
 
 function allowedDates(dateString) {
   const date = new Date(dateString);
@@ -114,6 +133,11 @@ function toggleComplete() {
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ocultar el título por defecto si es necesario */
+.custom-date-picker :deep(.v-date-picker-header__value) {
+  display: none;
 }
 
 .custom-date-picker :deep(.v-date-picker-month__day--disabled) {
