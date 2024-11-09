@@ -1,39 +1,54 @@
 <template>
-  <v-container>
-    <v-col cols="12" class="wrapper-options">
-      <v-card
-        class="mx-auto clickable-card"
-        :elevation="2"
-        hover
-        ripple
-        @click="navigateTo('Chat')"
-      >
-        <v-card-item class="cards">
-          <div>
-            <div class="text-overline mb-1">Interactúa amb la nostra IA</div>
-            <div class="text-caption">
-              <img src="../assets/chatting.svg" alt="" />
+  <v-container class="fill-height">
+    <v-row justify="center" align="center" class="card-container">
+      <v-col cols="12" md="6" class="d-flex justify-center">
+        <v-card
+          class="clickable-card"
+          :elevation="2"
+          hover
+          ripple
+          @click="navigateTo('Chat')"
+        >
+          <v-card-item>
+            <div class="d-flex flex-column align-center">
+              <div class="text-overline mb-4">Interactúa amb la nostra IA</div>
+              <div class="image-container">
+                <img
+                  src="../assets/chatting.svg"
+                  alt=""
+                  class="responsive-image"
+                />
+              </div>
             </div>
-          </div>
-        </v-card-item>
-      </v-card>
-      <v-card
-        class="mx-auto clickable-card"
-        :elevation="2"
-        hover
-        ripple
-        @click="navigateTo('Calendar')"
-      >
-        <v-card-item class="cards">
-          <div>
-            <div class="text-overline mb-1">Troba cita al nostre calendari</div>
-            <div class="text-caption">
-              <img src="../assets/calendar.svg" alt="" />
+          </v-card-item>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" md="6" class="d-flex justify-center">
+        <v-card
+          class="clickable-card"
+          :elevation="2"
+          hover
+          ripple
+          @click="navigateTo('Calendar')"
+        >
+          <v-card-item>
+            <div class="d-flex flex-column align-center">
+              <div class="text-overline mb-4">
+                Troba cita al nostre calendari
+              </div>
+              <div class="image-container">
+                <img
+                  src="../assets/calendar.svg"
+                  alt=""
+                  class="responsive-image"
+                />
+              </div>
             </div>
-          </div>
-        </v-card-item>
-      </v-card>
-    </v-col>
+          </v-card-item>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -48,38 +63,47 @@ export default {
 </script>
 
 <style scoped>
-.cards {
-  width: 600px;
-}
-img {
-  height: 280px;
+.fill-height {
+  height: 100vh;
 }
 
-.wrapper-options {
-  display: flex;
-  align-items: center;
+.card-container {
   gap: 30px;
 }
 
-@media screen and (min-width: 1024px) {
-  .wrapper-options {
-    margin-top: 150px;
-  }
-}
-
-@media screen and (max-width: 1023px) {
-  .wrapper-options {
-    margin-top: 220px;
-  }
-}
-
 .clickable-card {
-  margin: 0 !important;
+  width: 100%;
+  max-width: 600px;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }
+
 .clickable-card:hover {
   transform: scale(1.05);
 }
-</style>
 
+.image-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.responsive-image {
+  width: 100%;
+  height: auto;
+  max-height: 280px;
+  object-fit: contain;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 960px) {
+  .clickable-card {
+    max-width: 90%;
+  }
+
+  .responsive-image {
+    max-height: 200px;
+  }
+}
+</style>
