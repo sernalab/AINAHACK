@@ -9,7 +9,6 @@
   </v-btn>
   <v-container>
     <v-row>
-      <!-- Select para el trámite -->
       <v-select
         v-model="selectedTramit"
         :items="tramits"
@@ -19,7 +18,6 @@
       />
     </v-row>
     <v-row>
-      <!-- Select de Comunidades de Cataluña dependiendo del trámite -->
       <v-select
         v-model="selectedCommunity"
         :items="communities"
@@ -28,7 +26,6 @@
         class="mt-4 custom-community-select"
       />
 
-      <!-- Select de Ciudades dependiendo de la comunidad seleccionada -->
       <v-select
         v-if="selectedCommunity"
         v-model="selectedCity"
@@ -38,7 +35,6 @@
       />
     </v-row>
 
-    <!-- Resultado seleccionado -->
     <v-row
       v-if="selectedTramit && selectedCommunity && selectedCity"
       class="mt-4"
@@ -109,11 +105,11 @@ const time = ref(null);
 const isComplete = ref(false);
 const router = useRouter();
 const pickerDate = ref(new Date());
-const selectedTramit = ref(null); // Asegúrate de que esté definido y inicializado
+const selectedTramit = ref(null);
 const selectedCommunity = ref(null);
 const selectedCity = ref(null);
 
-const tramits = ["Paternitat", "Maternitat", "Lactància"]; // Lista de trámites
+const tramits = ["Paternitat", "Maternitat", "Lactància"];
 
 const communities = ["Barcelona", "Girona", "Lleida", "Tarragona"];
 const cities = {
@@ -164,7 +160,7 @@ function onTramitSelected() {
 }
 
 function onCommunitySelected() {
-  selectedCity.value = null; // Reinicia la selección de ciudad cuando cambia la comunidad
+  selectedCity.value = null;
 }
 
 function onTimeSelected() {
