@@ -10,7 +10,7 @@ const api = axios.create({
 export const getSalamandraResponse = async (prompt) => {
   try {
     const response = await api.post("/chat", {
-      message: prompt,
+      response: prompt,
     });
     console.log("Response received", response.data);
     return response.data.message;
