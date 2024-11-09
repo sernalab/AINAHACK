@@ -9,8 +9,8 @@
   </v-btn>
   <v-container>
     <v-alert
-      text="Esteu consultant les cites a l'agenda de la oficina de Barcelona"
-      title="Oficina de Barcelona"
+      text="Esteu consultant les cites a l'agenda de la oficina de CAISS Barcelona, Sarrià. Carrer Vallvidrera, 27"
+      title="Oficina CAISS"
       type="info"
       variant="tonal"
     ></v-alert>
@@ -90,21 +90,21 @@ const router = useRouter();
 const messages = ref([
   {
     avatar: true,
-    name: "Jhon Doe",
+    name: "Miquel Català",
     title: "Cita matí",
     excerpt: "Disponible Dijous 14",
     color: "blue",
   },
   {
     avatar: true,
-    name: "Jhon Doe",
+    name: "Anna Roca",
     title: "Cita tarda",
     excerpt: "Disponible Dimecres 20",
     color: "blue",
   },
 ]);
 
-const expert = "Especialista..";
+const expert = "Tècnic administratiu. Sol·licitud permís paternitat.";
 
 function goToWelcome() {
   router.push({ name: "Welcome" });

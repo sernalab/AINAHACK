@@ -8,6 +8,50 @@
     Tornar
   </v-btn>
   <v-container>
+    <v-row>
+      <!-- Select para el trámite -->
+      <v-select
+        v-model="selectedTramit"
+        :items="tramits"
+        label="Selecciona el tràmit"
+        @change="onTramitSelected"
+        class="mt-4 custom-community-select"
+      />
+    </v-row>
+    <v-row>
+      <!-- Select de Comunidades de Cataluña dependiendo del trámite -->
+      <v-select
+        v-model="selectedCommunity"
+        :items="communities"
+        label="Selecciona la teva comunitat"
+        @change="onCommunitySelected"
+        class="mt-4 custom-community-select"
+      />
+
+      <!-- Select de Ciudades dependiendo de la comunidad seleccionada -->
+      <v-select
+        v-if="selectedCommunity"
+        v-model="selectedCity"
+        :items="cities[selectedCommunity]"
+        label="Selecciona la ciutat"
+        class="mt-4 custom-city-select"
+      />
+    </v-row>
+
+    <!-- Resultado seleccionado -->
+    <v-row
+      v-if="selectedTramit && selectedCommunity && selectedCity"
+      class="mt-4"
+    >
+      <v-alert border="start" border-color="deep-purple-darken-1" elevation="2">
+        Has seleccionat el següent tràmit:
+        <span class="tramit-text"> {{ selectedTramit }}</span> a
+        <span class="tramit-text">{{ selectedCity }}</span
+        >,
+        <span class="tramit-text">{{ selectedCommunity }}</span>
+      </v-alert>
+    </v-row>
+
     <VDatePicker
       v-model="date"
       mode="date"
@@ -65,6 +109,19 @@ const time = ref(null);
 const isComplete = ref(false);
 const router = useRouter();
 const pickerDate = ref(new Date());
+const selectedTramit = ref(null); // Asegúrate de que esté definido y inicializado
+const selectedCommunity = ref(null);
+const selectedCity = ref(null);
+
+const tramits = ["Paternitat", "Maternitat", "Lactància"]; // Lista de trámites
+
+const communities = ["Barcelona", "Girona", "Lleida", "Tarragona"];
+const cities = {
+  Barcelona: ["Barcelona", "Hospitalet de Llobregat", "Badalona", "Terrassa"],
+  Girona: ["Girona", "Figueres", "Blanes", "Olot"],
+  Lleida: ["Lleida", "Balaguer", "Tàrrega", "Mollerussa"],
+  Tarragona: ["Tarragona", "Reus", "Salou", "Cambrils"],
+};
 
 const disabledDays = Array.from({ length: 31 }, (_, i) => i + 1)
   .sort(() => Math.random() - 0.5)
@@ -101,6 +158,15 @@ const timeOptions = Array.from({ length: (20 - 8 + 1) * 2 }, (_, i) => {
   return `${hours}:${minutes}`;
 });
 
+function onTramitSelected() {
+  selectedCommunity.value = null;
+  selectedCity.value = null;
+}
+
+function onCommunitySelected() {
+  selectedCity.value = null; // Reinicia la selección de ciudad cuando cambia la comunidad
+}
+
 function onTimeSelected() {
   isComplete.value = false;
 }
@@ -122,10 +188,19 @@ function toggleComplete() {
   margin-left: 20px;
 }
 
+.tramit-text {
+  font-weight: bold;
+}
+
 .v-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  margin-bottom: 100px;
+}
+
+.v-row {
   width: 100%;
 }
 

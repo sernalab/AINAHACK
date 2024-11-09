@@ -35,7 +35,7 @@
           <v-card-item>
             <div class="d-flex flex-column align-center">
               <div class="text-overline mb-4">
-                Troba cita al nostre calendari
+                Ja saps el que vols? Troba cita!
               </div>
               <div class="image-container">
                 <img
